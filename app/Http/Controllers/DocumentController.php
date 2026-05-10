@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DocumentRequest;
+use App\Models\AdditionalCertificate;
+use App\Models\Certificate;
 use App\Models\Document;
 use App\Models\DocumentCategory;
+use App\Models\LeaseContract;
 use App\Models\Property;
 use App\Services\AuditLogService;
 use Illuminate\Support\Facades\Storage;
@@ -27,6 +30,9 @@ class DocumentController extends Controller
         return view('documents.create', [
             'categories' => DocumentCategory::where('is_active', true)->orderBy('name')->get(),
             'properties' => Property::with('certificate')->orderBy('property_name')->get(),
+            'certificates' => Certificate::with('property')->orderBy('certificate_number')->get(),
+            'additionalCertificates' => AdditionalCertificate::with('property')->orderBy('document_number')->get(),
+            'leaseContracts' => LeaseContract::with('property')->orderByDesc('end_date')->get(),
         ]);
     }
 

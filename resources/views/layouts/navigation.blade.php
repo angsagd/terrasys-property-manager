@@ -30,6 +30,11 @@
                     <x-nav-link :href="route('map.index')" :active="request()->routeIs('map.*')">
                         Map
                     </x-nav-link>
+                    @can('view_master_data')
+                        <x-nav-link :href="route('admin.master-data.index')" :active="request()->routeIs('admin.*')">
+                            Admin
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -94,6 +99,11 @@
             <x-responsive-nav-link :href="route('documents.index')" :active="request()->routeIs('documents.*')">
                 Dokumen
             </x-responsive-nav-link>
+            @can('view_master_data')
+                <x-responsive-nav-link :href="route('admin.master-data.index')" :active="request()->routeIs('admin.*')">
+                    Admin
+                </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->

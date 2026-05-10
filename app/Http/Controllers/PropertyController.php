@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PropertyRequest;
+use App\Models\AuditLog;
 use App\Models\CertificateStatus;
 use App\Models\City;
+use App\Models\Document;
 use App\Models\LandRightType;
 use App\Models\Property;
 use App\Models\PropertyType;
@@ -79,7 +81,27 @@ class PropertyController extends Controller
             'propertyType', 'utilizationStatus', 'province', 'city', 'district', 'village',
         ]);
 
-        return view('properties.show', compact('property'));
+        $additionalCertificateIds = $property->additionalCertificates->pluck('id');
+        $relatedDocuments = Document::with(['category', 'uploader'])
+            ->where('property_id', $property->id)
+            ->when($property->certificate, fn ($query) => $query->orWhere('certificate_id', $property->certificate->id))
+            ->when($additionalCertificateIds->isNotEmpty(), fn ($query) => $query->orWhereIn('additional_certificate_id', $additionalCertificateIds))
+            ->latest()
+            ->get();
+
+        $auditLogs = AuditLog::with('user')
+            ->where(function ($query) use ($property) {
+                $query->where(fn ($q) => $q->where('table_name', 'properties')->where('record_id', $property->id));
+
+                if ($property->certificate) {
+                    $query->orWhere(fn ($q) => $q->where('table_name', 'certificates')->where('record_id', $property->certificate->id));
+                }
+            })
+            ->latest('created_at')
+            ->limit(20)
+            ->get();
+
+        return view('properties.show', compact('property', 'relatedDocuments', 'auditLogs'));
     }
 
     public function edit(Property $property)

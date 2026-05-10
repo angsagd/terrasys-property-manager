@@ -50,6 +50,11 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('master-data', [MasterDataController::class, 'index'])->name('master-data.index');
+        Route::get('master-data/{type}/create', [MasterDataController::class, 'create'])->name('master-data.create');
+        Route::post('master-data/{type}', [MasterDataController::class, 'store'])->name('master-data.store');
+        Route::get('master-data/{type}/{id}/edit', [MasterDataController::class, 'edit'])->name('master-data.edit');
+        Route::put('master-data/{type}/{id}', [MasterDataController::class, 'update'])->name('master-data.update');
+        Route::delete('master-data/{type}/{id}', [MasterDataController::class, 'destroy'])->name('master-data.destroy');
         Route::get('audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
         Route::get('system-settings', [SystemSettingController::class, 'index'])->name('system-settings.index');
     });
