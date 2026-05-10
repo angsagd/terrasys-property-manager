@@ -1,58 +1,203 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Terrasys Property Manager
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Terrasys Property Manager adalah aplikasi internal berbasis Laravel untuk mengelola aset properti perusahaan, sertifikat tanah, dokumen legal, status pemanfaatan aset, laporan dasar, audit trail, dan peta sebaran properti.
 
-## About Laravel
+Project ini mengikuti rancangan pada `Blueprint.md` dengan fokus awal pada Phase 1: fondasi autentikasi, role access, property + certificate, master data, document upload, dashboard, dan audit trail dasar.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Stack
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Backend: Laravel 13
+- Frontend: Blade, Tailwind CSS, Alpine.js
+- Database: MySQL / MariaDB
+- Auth: Laravel Breeze
+- Role & permission: Spatie Laravel Permission
+- Asset build: Vite
+- Map: Leaflet + OpenStreetMap CDN
+- Test: PHPUnit
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Modul Saat Ini
 
-## Learning Laravel
+- Login, register, profile, password management dari Laravel Breeze.
+- Role dan permission:
+  - `Super Admin`
+  - `Property Manager`
+  - `Viewer`
+- Dashboard ringkasan aset.
+- Property CRUD dengan sertifikat utama dalam satu form.
+- Certificate list dan detail.
+- Additional Certificate CRUD.
+- Document upload dan download.
+- Map sebaran property berdasarkan latitude/longitude.
+- Reports dasar:
+  - Assets by region
+  - Assets by land right
+  - Idle properties
+  - Expiring certificates
+- Notifications page dasar.
+- Master Data read-only.
+- Audit Trail.
+- System Settings read-only.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Struktur Data Utama
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Relasi inti aplikasi:
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- `properties` memiliki satu `certificates` utama.
+- `properties` memiliki banyak `additional_certificates`.
+- `properties` memiliki banyak `documents`.
+- `properties` memiliki banyak `lease_contracts`.
+- `documents` dapat terhubung ke property, certificate, additional certificate, atau lease contract.
 
-## Agentic Development
+Master data utama:
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- Property Type
+- Property Utilization Status
+- Land Right Type
+- Certificate Status
+- Lease Type
+- Lease Status
+- Document Category
+- Province / City / District / Village
+
+## Setup Lokal
+
+Pastikan dependency berikut tersedia:
+
+- PHP 8.3+
+- Composer
+- Node.js dan npm
+- MySQL atau MariaDB
+
+Install dependency:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+composer install
+npm install
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Siapkan file environment:
 
-## Contributing
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Atur database di `.env`:
 
-## Code of Conduct
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=terrasys
+DB_USERNAME=terrasys
+DB_PASSWORD="password-anda"
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Jika password berisi karakter khusus seperti `#`, bungkus dengan tanda kutip seperti contoh di atas.
 
-## Security Vulnerabilities
+Jalankan migration dan seeder:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan migrate --seed
+```
 
-## License
+Buat symlink storage untuk upload dokumen:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan storage:link
+```
+
+Build asset frontend:
+
+```bash
+npm run build
+```
+
+Jalankan aplikasi:
+
+```bash
+php artisan serve --host=127.0.0.1 --port=8000
+```
+
+Akses aplikasi di:
+
+```text
+http://127.0.0.1:8000
+```
+
+## Akun Awal
+
+Seeder membuat akun Super Admin:
+
+```text
+Email    : admin@example.com
+Password : password
+```
+
+Ganti password setelah login pertama jika aplikasi dipakai di environment selain lokal.
+
+## Development
+
+Untuk menjalankan Vite dev server:
+
+```bash
+npm run dev
+```
+
+Untuk menjalankan Laravel dev server:
+
+```bash
+php artisan serve --host=127.0.0.1 --port=8000
+```
+
+Untuk menjalankan test:
+
+```bash
+php artisan test
+```
+
+Untuk membersihkan cache Laravel:
+
+```bash
+php artisan optimize:clear
+```
+
+## Catatan Implementasi
+
+- Middleware Spatie didaftarkan di `bootstrap/app.php` dengan alias `role`, `permission`, dan `role_or_permission`.
+- Base controller memakai trait `AuthorizesRequests` agar controller dapat menggunakan `$this->authorize(...)`.
+- `polygon_geojson` disimpan sebagai `LONGTEXT` agar kompatibel dengan MySQL/MariaDB.
+- Validasi GeoJSON dilakukan di level Form Request.
+- Upload dokumen menggunakan disk `public`, sehingga `php artisan storage:link` diperlukan.
+- Leaflet sementara dimuat via CDN pada halaman map.
+
+## Roadmap Singkat
+
+Phase berikutnya yang belum lengkap:
+
+- Lease Management full CRUD.
+- Notification generator untuk certificate/document/lease expiry.
+- Export Excel/PDF.
+- User Management dan Role Management UI.
+- Master Data CRUD.
+- Advanced report filters.
+- GeoJSON drawing/editing dengan Leaflet Draw.
+- API Phase 2 dengan Laravel Sanctum.
+
+## Verifikasi Terakhir
+
+Command yang digunakan untuk validasi:
+
+```bash
+php artisan migrate:status
+npm run build
+php artisan test
+```
+
+Status terakhir:
+
+```text
+PHPUnit: 25 tests passed
+Vite build: successful
+Migrations: ran successfully
+```
