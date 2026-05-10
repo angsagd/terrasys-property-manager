@@ -4,7 +4,9 @@
     </x-slot>
 
     <div class="py-8">
-        <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl space-y-5 px-4 sm:px-6 lg:px-8">
+            @include('admin.partials.nav')
+
             <form method="POST" action="{{ $item ? route('admin.master-data.update', [$type, $item]) : route('admin.master-data.store', $type) }}" class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
                 @csrf
                 @if ($item)

@@ -3,7 +3,9 @@
 use App\Http\Controllers\AdditionalCertificateController;
 use App\Http\Controllers\Admin\AuditLogController;
 use App\Http\Controllers\Admin\MasterDataController;
+use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\SystemSettingController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocumentController;
@@ -49,6 +51,11 @@ Route::middleware('auth')->group(function () {
     Route::post('notifications/{notification}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark-as-read');
 
     Route::prefix('admin')->name('admin.')->group(function () {
+        Route::resource('users', UserController::class)->except(['show']);
+        Route::post('users/{user}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.toggle-status');
+        Route::get('roles', [RolePermissionController::class, 'index'])->name('roles.index');
+        Route::get('roles/{role}/edit', [RolePermissionController::class, 'edit'])->name('roles.edit');
+        Route::put('roles/{role}', [RolePermissionController::class, 'update'])->name('roles.update');
         Route::get('master-data', [MasterDataController::class, 'index'])->name('master-data.index');
         Route::get('master-data/{type}/create', [MasterDataController::class, 'create'])->name('master-data.create');
         Route::post('master-data/{type}', [MasterDataController::class, 'store'])->name('master-data.store');
