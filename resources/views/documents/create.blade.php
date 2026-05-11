@@ -53,7 +53,7 @@
                             <select name="lease_contract_id" class="mt-1 w-full rounded-md border-gray-300 text-sm">
                                 <option value="">-</option>
                                 @foreach ($leaseContracts as $leaseContract)
-                                    <option value="{{ $leaseContract->id }}" @selected(old('lease_contract_id') == $leaseContract->id)>{{ $leaseContract->counterparty_name }} - {{ $leaseContract->property?->property_name }}</option>
+                                    <option value="{{ $leaseContract->id }}" @selected(old('lease_contract_id', request('lease_contract_id')) == $leaseContract->id)>{{ $leaseContract->counterparty_name }} - {{ $leaseContract->property?->property_name }}</option>
                                 @endforeach
                             </select>
                         </label>

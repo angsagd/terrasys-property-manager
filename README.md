@@ -28,6 +28,7 @@ Project ini mengikuti rancangan pada `Blueprint.md` dengan fokus awal pada Phase
 - Dropdown wilayah Indonesia bertingkat: provinsi, kota/kabupaten, kecamatan, desa/kelurahan.
 - Certificate list dan detail.
 - Additional Certificate CRUD.
+- Lease Management CRUD untuk kontrak sewa keluar dan sewa masuk.
 - Document upload dan download.
 - Map sebaran property berdasarkan latitude/longitude.
 - Reports dasar:
@@ -182,7 +183,6 @@ php artisan optimize:clear
 
 Phase berikutnya yang belum lengkap:
 
-- Lease Management full CRUD.
 - Notification generator untuk certificate/document/lease expiry.
 - Export Excel/PDF.
 - User Management dan Role Management UI.
@@ -205,7 +205,7 @@ php artisan test
 Status terakhir:
 
 ```text
-PHPUnit: 29 tests passed
+PHPUnit: 32 tests passed
 Vite build: successful
 Migrations: ran successfully
 Laravolt Indonesia seed: successful

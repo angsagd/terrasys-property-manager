@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\LeaseContractController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
@@ -39,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('properties', PropertyController::class);
     Route::resource('certificates', CertificateController::class)->only(['index', 'show']);
     Route::resource('additional-certificates', AdditionalCertificateController::class)->except(['show']);
+    Route::resource('lease-contracts', LeaseContractController::class);
     Route::resource('documents', DocumentController::class)->only(['index', 'create', 'store', 'show']);
     Route::get('documents/{document}/download', [DocumentController::class, 'download'])->name('documents.download');
 
