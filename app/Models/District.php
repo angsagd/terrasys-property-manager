@@ -2,21 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Attributes\Fillable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravolt\Indonesia\Models\District as LaravoltDistrict;
 
-#[Fillable(['city_id', 'code', 'name'])]
-class District extends Model
+class District extends LaravoltDistrict
 {
-    public function city(): BelongsTo
-    {
-        return $this->belongsTo(City::class);
-    }
-
-    public function villages(): HasMany
-    {
-        return $this->hasMany(Village::class);
-    }
 }

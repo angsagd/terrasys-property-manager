@@ -13,6 +13,7 @@ use App\Http\Controllers\MapController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\RegionController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('regions/provinces/{province}/cities', [RegionController::class, 'cities'])->name('regions.cities');
+    Route::get('regions/cities/{city}/districts', [RegionController::class, 'districts'])->name('regions.districts');
+    Route::get('regions/districts/{district}/villages', [RegionController::class, 'villages'])->name('regions.villages');
 
     Route::resource('properties', PropertyController::class);
     Route::resource('certificates', CertificateController::class)->only(['index', 'show']);

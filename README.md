@@ -11,6 +11,7 @@ Project ini mengikuti rancangan pada `Blueprint.md` dengan fokus awal pada Phase
 - Database: MySQL / MariaDB
 - Auth: Laravel Breeze
 - Role & permission: Spatie Laravel Permission
+- Data wilayah Indonesia: Laravolt Indonesia
 - Asset build: Vite
 - Map: Leaflet + OpenStreetMap CDN
 - Test: PHPUnit
@@ -24,6 +25,7 @@ Project ini mengikuti rancangan pada `Blueprint.md` dengan fokus awal pada Phase
   - `Viewer`
 - Dashboard ringkasan aset.
 - Property CRUD dengan sertifikat utama dalam satu form.
+- Dropdown wilayah Indonesia bertingkat: provinsi, kota/kabupaten, kecamatan, desa/kelurahan.
 - Certificate list dan detail.
 - Additional Certificate CRUD.
 - Document upload dan download.
@@ -57,7 +59,7 @@ Master data utama:
 - Lease Type
 - Lease Status
 - Document Category
-- Province / City / District / Village
+- Province / City / District / Village dari Laravolt Indonesia (`indonesia_provinces`, `indonesia_cities`, `indonesia_districts`, `indonesia_villages`)
 
 ## Setup Lokal
 
@@ -99,7 +101,10 @@ Jalankan migration dan seeder:
 
 ```bash
 php artisan migrate --seed
+php artisan laravolt:indonesia:seed
 ```
+
+Seeder Laravolt diperlukan agar pilihan wilayah administrasi Indonesia tersedia pada form property dan modul lain yang memakai data provinsi/kota/kecamatan/desa.
 
 Buat symlink storage untuk upload dokumen:
 
@@ -166,6 +171,8 @@ php artisan optimize:clear
 
 - Middleware Spatie didaftarkan di `bootstrap/app.php` dengan alias `role`, `permission`, dan `role_or_permission`.
 - Base controller memakai trait `AuthorizesRequests` agar controller dapat menggunakan `$this->authorize(...)`.
+- Model `Province`, `City`, `District`, dan `Village` menggunakan model Laravolt Indonesia agar sumber data wilayah tidak dikelola manual.
+- Endpoint internal `/regions/...` dipakai untuk dropdown wilayah bertingkat di form property.
 - `polygon_geojson` disimpan sebagai `LONGTEXT` agar kompatibel dengan MySQL/MariaDB.
 - Validasi GeoJSON dilakukan di level Form Request.
 - Upload dokumen menggunakan disk `public`, sehingga `php artisan storage:link` diperlukan.
@@ -190,6 +197,7 @@ Command yang digunakan untuk validasi:
 
 ```bash
 php artisan migrate:status
+php artisan laravolt:indonesia:seed
 npm run build
 php artisan test
 ```
@@ -197,7 +205,8 @@ php artisan test
 Status terakhir:
 
 ```text
-PHPUnit: 25 tests passed
+PHPUnit: 29 tests passed
 Vite build: successful
 Migrations: ran successfully
+Laravolt Indonesia seed: successful
 ```

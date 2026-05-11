@@ -2,18 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Attributes\Fillable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravolt\Indonesia\Models\Province as LaravoltProvince;
 
-#[Fillable(['code', 'name'])]
-class Province extends Model
+class Province extends LaravoltProvince
 {
-    public function cities(): HasMany
-    {
-        return $this->hasMany(City::class);
-    }
-
     public function properties(): HasMany
     {
         return $this->hasMany(Property::class);
