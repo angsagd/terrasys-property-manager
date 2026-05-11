@@ -7,11 +7,13 @@ use App\Models\AuditLog;
 use App\Models\CertificateStatus;
 use App\Models\City;
 use App\Models\Document;
+use App\Models\District;
 use App\Models\LandRightType;
 use App\Models\Property;
 use App\Models\PropertyType;
 use App\Models\PropertyUtilizationStatus;
 use App\Models\Province;
+use App\Models\Village;
 use App\Services\AuditLogService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -143,13 +145,29 @@ class PropertyController extends Controller
 
     private function formData(): array
     {
+        $property = request()->route('property');
+        $oldProvinceId = old('property.province_id', $property?->province_id);
+        $oldCityId = old('property.city_id', $property?->city_id);
+        $oldDistrictId = old('property.district_id', $property?->district_id);
+        $selectedProvince = $oldProvinceId ? Province::find($oldProvinceId) : null;
+        $selectedCity = $oldCityId ? City::find($oldCityId) : null;
+        $selectedDistrict = $oldDistrictId ? District::find($oldDistrictId) : null;
+
         return [
             'propertyTypes' => PropertyType::where('is_active', true)->orderBy('name')->get(),
             'utilizationStatuses' => PropertyUtilizationStatus::where('is_active', true)->orderBy('name')->get(),
             'landRightTypes' => LandRightType::where('is_active', true)->orderBy('name')->get(),
             'certificateStatuses' => CertificateStatus::where('is_active', true)->orderBy('name')->get(),
             'provinces' => Province::orderBy('name')->get(),
-            'cities' => City::orderBy('name')->get(),
+            'cities' => $selectedProvince
+                ? City::where('province_code', $selectedProvince->code)->orderBy('name')->get()
+                : collect(),
+            'districts' => $selectedCity
+                ? District::where('city_code', $selectedCity->code)->orderBy('name')->get()
+                : collect(),
+            'villages' => $selectedDistrict
+                ? Village::where('district_code', $selectedDistrict->code)->orderBy('name')->get()
+                : collect(),
         ];
     }
 }

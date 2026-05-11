@@ -21,6 +21,11 @@
                     <x-nav-link :href="route('certificates.index')" :active="request()->routeIs('certificates.*')">
                         Sertifikat
                     </x-nav-link>
+                    @can('view_lease')
+                        <x-nav-link :href="route('lease-contracts.index')" :active="request()->routeIs('lease-contracts.*')">
+                            Lease
+                        </x-nav-link>
+                    @endcan
                     <x-nav-link :href="route('documents.index')" :active="request()->routeIs('documents.*')">
                         Dokumen
                     </x-nav-link>
@@ -30,11 +35,11 @@
                     <x-nav-link :href="route('map.index')" :active="request()->routeIs('map.*')">
                         Map
                     </x-nav-link>
-                    @can('view_master_data')
-                        <x-nav-link :href="route('admin.master-data.index')" :active="request()->routeIs('admin.*')">
+                    @canany(['view_user', 'view_role', 'view_master_data', 'view_audit_log', 'view_system_setting'])
+                        <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.*')">
                             Admin
                         </x-nav-link>
-                    @endcan
+                    @endcanany
                 </div>
             </div>
 
@@ -96,14 +101,19 @@
             <x-responsive-nav-link :href="route('certificates.index')" :active="request()->routeIs('certificates.*')">
                 Sertifikat
             </x-responsive-nav-link>
+            @can('view_lease')
+                <x-responsive-nav-link :href="route('lease-contracts.index')" :active="request()->routeIs('lease-contracts.*')">
+                    Lease
+                </x-responsive-nav-link>
+            @endcan
             <x-responsive-nav-link :href="route('documents.index')" :active="request()->routeIs('documents.*')">
                 Dokumen
             </x-responsive-nav-link>
-            @can('view_master_data')
-                <x-responsive-nav-link :href="route('admin.master-data.index')" :active="request()->routeIs('admin.*')">
+            @canany(['view_user', 'view_role', 'view_master_data', 'view_audit_log', 'view_system_setting'])
+                <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.*')">
                     Admin
                 </x-responsive-nav-link>
-            @endcan
+            @endcanany
         </div>
 
         <!-- Responsive Settings Options -->

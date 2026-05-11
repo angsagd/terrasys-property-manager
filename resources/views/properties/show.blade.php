@@ -130,15 +130,20 @@
                     </section>
 
                     <section x-show="tab === 'lease'" class="space-y-4">
-                        <h3 class="font-semibold text-gray-900">Lease</h3>
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-semibold text-gray-900">Lease</h3>
+                            @can('create_lease')
+                                <a href="{{ route('lease-contracts.create', ['property_id' => $property->id]) }}" class="text-sm text-blue-700">Tambah Lease</a>
+                            @endcan
+                        </div>
                         <div class="overflow-x-auto">
                             <table class="min-w-full divide-y divide-gray-200 text-sm">
-                                <thead class="bg-gray-50 text-left text-xs uppercase text-gray-500"><tr><th class="px-3 py-2">Jenis</th><th class="px-3 py-2">Pihak Lawan</th><th class="px-3 py-2">Mulai</th><th class="px-3 py-2">Selesai</th><th class="px-3 py-2">Nilai</th><th class="px-3 py-2">Status</th></tr></thead>
+                                <thead class="bg-gray-50 text-left text-xs uppercase text-gray-500"><tr><th class="px-3 py-2">Jenis</th><th class="px-3 py-2">Pihak Lawan</th><th class="px-3 py-2">Mulai</th><th class="px-3 py-2">Selesai</th><th class="px-3 py-2">Nilai</th><th class="px-3 py-2">Status</th><th class="px-3 py-2"></th></tr></thead>
                                 <tbody class="divide-y divide-gray-100">
                                     @forelse ($property->leaseContracts as $lease)
-                                        <tr><td class="px-3 py-2">{{ $lease->leaseType?->name }}</td><td class="px-3 py-2">{{ $lease->counterparty_name }}</td><td class="px-3 py-2">{{ $lease->start_date?->format('d-m-Y') }}</td><td class="px-3 py-2">{{ $lease->end_date?->format('d-m-Y') }}</td><td class="px-3 py-2">Rp {{ number_format($lease->rental_value, 0, ',', '.') }}</td><td class="px-3 py-2">{{ $lease->leaseStatus?->name }}</td></tr>
+                                        <tr><td class="px-3 py-2">{{ $lease->leaseType?->name }}</td><td class="px-3 py-2">{{ $lease->counterparty_name }}</td><td class="px-3 py-2">{{ $lease->start_date?->format('d-m-Y') }}</td><td class="px-3 py-2">{{ $lease->end_date?->format('d-m-Y') }}</td><td class="px-3 py-2">Rp {{ number_format($lease->rental_value, 0, ',', '.') }}</td><td class="px-3 py-2">{{ $lease->leaseStatus?->name }}</td><td class="px-3 py-2 text-right"><a href="{{ route('lease-contracts.show', $lease) }}" class="text-blue-700">Detail</a></td></tr>
                                     @empty
-                                        <tr><td colspan="6" class="px-3 py-6 text-center text-gray-500">Belum ada kontrak sewa.</td></tr>
+                                        <tr><td colspan="7" class="px-3 py-6 text-center text-gray-500">Belum ada kontrak sewa.</td></tr>
                                     @endforelse
                                 </tbody>
                             </table>

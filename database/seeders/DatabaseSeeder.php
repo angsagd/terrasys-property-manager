@@ -130,9 +130,9 @@ class DatabaseSeeder extends Seeder
             DocumentCategory::firstOrCreate(['name' => $name]);
         }
 
-        $bali = Province::firstOrCreate(['name' => 'Bali'], ['code' => '51']);
-        City::firstOrCreate(['province_id' => $bali->id, 'name' => 'Denpasar'], ['code' => '5171', 'type' => 'kota']);
-        City::firstOrCreate(['province_id' => $bali->id, 'name' => 'Badung'], ['code' => '5103', 'type' => 'kabupaten']);
+        Province::firstOrCreate(['code' => '51'], ['name' => 'BALI']);
+        City::firstOrCreate(['code' => '5171'], ['province_code' => '51', 'name' => 'KOTA DENPASAR']);
+        City::firstOrCreate(['code' => '5103'], ['province_code' => '51', 'name' => 'KABUPATEN BADUNG']);
 
         foreach ([
             ['setting_key' => 'app_name', 'setting_value' => 'Terrasys Property Manager', 'setting_type' => 'string'],

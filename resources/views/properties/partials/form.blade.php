@@ -50,24 +50,77 @@
     </div>
 </section>
 
-<section class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+<section
+    x-data="{
+        provinceId: @js((string) old('property.province_id', $property?->province_id ?? '')),
+        cityId: @js((string) old('property.city_id', $property?->city_id ?? '')),
+        districtId: @js((string) old('property.district_id', $property?->district_id ?? '')),
+        villageId: @js((string) old('property.village_id', $property?->village_id ?? '')),
+        cities: @js($cities->map(fn ($city) => ['id' => (string) $city->id, 'name' => $city->name])->values()),
+        districts: @js($districts->map(fn ($district) => ['id' => (string) $district->id, 'name' => $district->name])->values()),
+        villages: @js($villages->map(fn ($village) => ['id' => (string) $village->id, 'name' => $village->name])->values()),
+        async loadCities() {
+            this.cityId = '';
+            this.districtId = '';
+            this.villageId = '';
+            this.cities = [];
+            this.districts = [];
+            this.villages = [];
+            if (!this.provinceId) return;
+            this.cities = await fetch(`/regions/provinces/${this.provinceId}/cities`).then(response => response.json());
+        },
+        async loadDistricts() {
+            this.districtId = '';
+            this.villageId = '';
+            this.districts = [];
+            this.villages = [];
+            if (!this.cityId) return;
+            this.districts = await fetch(`/regions/cities/${this.cityId}/districts`).then(response => response.json());
+        },
+        async loadVillages() {
+            this.villageId = '';
+            this.villages = [];
+            if (!this.districtId) return;
+            this.villages = await fetch(`/regions/districts/${this.districtId}/villages`).then(response => response.json());
+        }
+    }"
+    class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm"
+>
     <h3 class="mb-4 font-semibold text-gray-900">Lokasi</h3>
     <div class="grid gap-4 md:grid-cols-2">
         <label class="text-sm md:col-span-2">Alamat Lengkap
             <textarea name="property[address]" rows="2" class="mt-1 w-full rounded-md border-gray-300 text-sm">{{ old('property.address', $property?->address) }}</textarea>
         </label>
         <label class="text-sm">Provinsi *
-            <select name="property[province_id]" class="mt-1 w-full rounded-md border-gray-300 text-sm" required>
+            <select name="property[province_id]" x-model="provinceId" @change="loadCities" class="mt-1 w-full rounded-md border-gray-300 text-sm" required>
+                <option value="">Pilih Provinsi</option>
                 @foreach ($provinces as $province)
-                    <option value="{{ $province->id }}" @selected(old('property.province_id', $property?->province_id) == $province->id)>{{ $province->name }}</option>
+                    <option value="{{ $province->id }}">{{ $province->name }}</option>
                 @endforeach
             </select>
         </label>
         <label class="text-sm">Kota/Kabupaten *
-            <select name="property[city_id]" class="mt-1 w-full rounded-md border-gray-300 text-sm" required>
-                @foreach ($cities as $city)
-                    <option value="{{ $city->id }}" @selected(old('property.city_id', $property?->city_id) == $city->id)>{{ $city->name }}</option>
-                @endforeach
+            <select name="property[city_id]" x-model="cityId" @change="loadDistricts" class="mt-1 w-full rounded-md border-gray-300 text-sm" required>
+                <option value="">Pilih Kota/Kabupaten</option>
+                <template x-for="city in cities" :key="city.id">
+                    <option :value="city.id" x-text="city.name"></option>
+                </template>
+            </select>
+        </label>
+        <label class="text-sm">Kecamatan
+            <select name="property[district_id]" x-model="districtId" @change="loadVillages" class="mt-1 w-full rounded-md border-gray-300 text-sm">
+                <option value="">Pilih Kecamatan</option>
+                <template x-for="district in districts" :key="district.id">
+                    <option :value="district.id" x-text="district.name"></option>
+                </template>
+            </select>
+        </label>
+        <label class="text-sm">Desa/Kelurahan
+            <select name="property[village_id]" x-model="villageId" class="mt-1 w-full rounded-md border-gray-300 text-sm">
+                <option value="">Pilih Desa/Kelurahan</option>
+                <template x-for="village in villages" :key="village.id">
+                    <option :value="village.id" x-text="village.name"></option>
+                </template>
             </select>
         </label>
         <label class="text-sm">Kode Pos

@@ -2,6 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\City;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\Village;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -22,10 +26,10 @@ class PropertyRequest extends FormRequest
             'property.property_type_id' => ['required', 'exists:property_types,id'],
             'property.utilization_status_id' => ['required', 'exists:property_utilization_statuses,id'],
             'property.address' => ['nullable', 'string'],
-            'property.province_id' => ['required', 'exists:provinces,id'],
-            'property.city_id' => ['required', 'exists:cities,id'],
-            'property.district_id' => ['nullable', 'exists:districts,id'],
-            'property.village_id' => ['nullable', 'exists:villages,id'],
+            'property.province_id' => ['required', Rule::exists((new Province)->getTable(), 'id')],
+            'property.city_id' => ['required', Rule::exists((new City)->getTable(), 'id')],
+            'property.district_id' => ['nullable', Rule::exists((new District)->getTable(), 'id')],
+            'property.village_id' => ['nullable', Rule::exists((new Village)->getTable(), 'id')],
             'property.postal_code' => ['nullable', 'string', 'max:20'],
             'property.land_area' => ['nullable', 'numeric', 'min:0'],
             'property.building_area' => ['nullable', 'numeric', 'min:0'],
