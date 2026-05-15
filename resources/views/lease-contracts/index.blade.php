@@ -1,9 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center justify-between">
-            <h2 class="text-xl font-semibold text-gray-800">Lease Management</h2>
+        <div class="flex items-center justify-between w-full">
+            <div>
+                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Lease Management</h2>
+                <p class="hidden lg:block text-sm text-gray-500 mt-1">Manage all your property lease contracts.</p>
+            </div>
             @can('create_lease')
-                <a href="{{ route('lease-contracts.create') }}" class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white">Tambah</a>
+                <a href="{{ route('lease-contracts.create') }}" class="inline-flex items-center rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 transition-all">
+                    <svg class="-ml-0.5 mr-1.5 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" /></svg>
+                    New Lease
+                </a>
             @endcan
         </div>
     </x-slot>

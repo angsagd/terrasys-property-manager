@@ -1,7 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center justify-between">
-            <h2 class="text-xl font-semibold text-gray-800">Detail Lease Contract</h2>
+    <div class="flex items-center justify-between w-full">
+        <div>
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Detail Lease Contract</h2>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">View complete details of the lease contract.</p>
+        </div>
             <div class="flex items-center gap-3">
                 @can('update_lease')
                     <a href="{{ route('lease-contracts.edit', $leaseContract) }}" class="rounded-md border border-gray-300 px-4 py-2 text-sm text-gray-700">Edit</a>

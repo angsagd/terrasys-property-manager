@@ -1,7 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold text-gray-800">Edit Role: {{ $role->name }}</h2>
-    </x-slot>
+    <div class="flex items-center justify-between w-full">
+        <div>
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Edit Role: {{ $role->name }}</h2>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Configure permissions for this specific role.</p>
+        </div>
+    </div>
+</x-slot>
 
     <div class="py-8">
         <div class="mx-auto max-w-5xl space-y-5 px-4 sm:px-6 lg:px-8">
