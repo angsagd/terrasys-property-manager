@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between w-full">
         <div>
             <h2 class="text-2xl font-bold tracking-tight text-gray-900">Tambah Lease Contract</h2>
-            <p class="hidden lg:block text-sm text-gray-500 mt-1">Create a new lease contract for a property.</p>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Buat kontrak sewa (lease) baru untuk properti.</p>
         </div>
     </div>
 </x-slot>

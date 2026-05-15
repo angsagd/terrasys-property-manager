@@ -2,8 +2,8 @@
     <x-slot name="header">
         <div class="flex items-center justify-between w-full">
             <div>
-                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Dashboard</h2>
-                <p class="hidden lg:block text-sm text-gray-500 mt-1">Welcome back, {{ Auth::user()->name }}! Here's what's happening with your properties.</p>
+                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Dasbor</h2>
+                <p class="hidden lg:block text-sm text-gray-500 mt-1">Selamat datang kembali, {{ Auth::user()->name }}! Berikut ringkasan aktivitas portofolio Anda.</p>
             </div>
             @can('create_property')
             <a href="{{ route('properties.create') }}" class="inline-flex items-center rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 transition-all">
@@ -51,16 +51,16 @@
                 <!-- Main Portfolio Table -->
                 <div class="lg:col-span-2">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-bold text-gray-900 tracking-tight">Recent Properties</h3>
-                        <a href="{{ route('properties.index') }}" class="text-sm font-medium text-brand-600 hover:text-brand-500">View all &rarr;</a>
+                        <h3 class="text-lg font-bold text-gray-900 tracking-tight">Properti Terbaru</h3>
+                        <a href="{{ route('properties.index') }}" class="text-sm font-medium text-brand-600 hover:text-brand-500">Lihat semua &rarr;</a>
                     </div>
                     <div class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200/50">
                         <div class="overflow-x-auto">
                             <table class="min-w-full divide-y divide-gray-200 text-sm">
                                 <thead class="bg-gray-50/50">
                                     <tr>
-                                        <th scope="col" class="py-3.5 pl-4 pr-3 text-left font-semibold text-gray-900 sm:pl-6">Property Details</th>
-                                        <th scope="col" class="px-3 py-3.5 text-left font-semibold text-gray-900">Location</th>
+                                        <th scope="col" class="py-3.5 pl-4 pr-3 text-left font-semibold text-gray-900 sm:pl-6">Detail Properti</th>
+                                        <th scope="col" class="px-3 py-3.5 text-left font-semibold text-gray-900">Lokasi</th>
                                         <th scope="col" class="px-3 py-3.5 text-left font-semibold text-gray-900">Status</th>
                                     </tr>
                                 </thead>
@@ -110,19 +110,19 @@
                         </h3>
                         <ul class="space-y-3">
                             <li class="flex items-center justify-between rounded-xl bg-orange-50/50 p-3 ring-1 ring-orange-200/50">
-                                <span class="text-sm font-medium text-orange-800">Sertifikat Expired</span>
+                                <span class="text-sm font-medium text-orange-800">Sertifikat Kedaluwarsa</span>
                                 <span class="inline-flex items-center justify-center rounded-full bg-orange-100 px-2.5 py-0.5 text-sm font-bold text-orange-700">{{ $expiringCertificates }}</span>
                             </li>
                             <li class="flex items-center justify-between rounded-xl bg-rose-50/50 p-3 ring-1 ring-rose-200/50">
-                                <span class="text-sm font-medium text-rose-800">Lease Expired</span>
+                                <span class="text-sm font-medium text-rose-800">Sewa Kedaluwarsa</span>
                                 <span class="inline-flex items-center justify-center rounded-full bg-rose-100 px-2.5 py-0.5 text-sm font-bold text-rose-700">{{ $expiringLeases }}</span>
                             </li>
                             <li class="flex items-center justify-between rounded-xl bg-yellow-50/50 p-3 ring-1 ring-yellow-200/50">
-                                <span class="text-sm font-medium text-yellow-800">Dokumen Expired</span>
+                                <span class="text-sm font-medium text-yellow-800">Dokumen Kedaluwarsa</span>
                                 <span class="inline-flex items-center justify-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-sm font-bold text-yellow-700">{{ $expiringDocuments }}</span>
                             </li>
                             <li class="flex items-center justify-between rounded-xl bg-gray-50/50 p-3 ring-1 ring-gray-200/50">
-                                <span class="text-sm font-medium text-gray-700">Property Idle</span>
+                                <span class="text-sm font-medium text-gray-700">Properti Menganggur</span>
                                 <span class="inline-flex items-center justify-center rounded-full bg-gray-200 px-2.5 py-0.5 text-sm font-bold text-gray-800">{{ $idleCount }}</span>
                             </li>
                         </ul>

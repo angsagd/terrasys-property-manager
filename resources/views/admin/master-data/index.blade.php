@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between w-full">
         <div>
             <h2 class="text-2xl font-bold tracking-tight text-gray-900">Master Data</h2>
-            <p class="hidden lg:block text-sm text-gray-500 mt-1">Manage core reference data used across the system.</p>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Kelola data referensi inti di seluruh sistem.</p>
         </div>
     </div>
 </x-slot>
@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="flex items-center gap-3">
                                         @can('update_master_data')
-                                            <a class="text-blue-700" href="{{ route('admin.master-data.edit', [$group['type'], $item]) }}">Edit</a>
+                                            <a class="text-blue-700" href="{{ route('admin.master-data.edit', [$group['type'], $item]) }}">Ubah</a>
                                         @endcan
                                         @can('delete_master_data')
                                             <form method="POST" action="{{ route('admin.master-data.destroy', [$group['type'], $item]) }}" onsubmit="return confirm('Hapus master data ini?')">

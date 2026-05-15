@@ -2,8 +2,8 @@
     <x-slot name="header">
     <div class="flex items-center justify-between w-full">
         <div>
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Notifications</h2>
-            <p class="hidden lg:block text-sm text-gray-500 mt-1">View your recent system alerts and updates.</p>
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Pemberitahuan</h2>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Lihat pemberitahuan dan pembaruan sistem terbaru Anda.</p>
         </div>
     </div>
 </x-slot>

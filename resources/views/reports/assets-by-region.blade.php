@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between w-full">
         <div>
             <h2 class="text-2xl font-bold tracking-tight text-gray-900">Laporan Aset per Wilayah</h2>
-            <p class="hidden lg:block text-sm text-gray-500 mt-1">Analyze property distribution and valuation by region.</p>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Analisis distribusi dan valuasi properti berdasarkan wilayah.</p>
         </div>
     </div>
 </x-slot>

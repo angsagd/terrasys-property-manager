@@ -2,8 +2,8 @@
     <x-slot name="header">
         <div class="flex items-center justify-between w-full">
             <div>
-                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Roles & Permissions</h2>
-                <p class="hidden lg:block text-sm text-gray-500 mt-1">Manage system roles and access control lists.</p>
+                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Peran & Hak Akses</h2>
+                <p class="hidden lg:block text-sm text-gray-500 mt-1">Kelola peran pengguna dan daftar kontrol akses.</p>
             </div>
         </div>
     </x-slot>
@@ -40,7 +40,7 @@
                                     <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600">{{ $permission->name }}</span>
                                 @endforeach
                                 @if ($role->permissions->count() > 12)
-                                    <span class="inline-flex items-center rounded-md bg-brand-50 px-2 py-1 text-xs font-medium text-brand-700 ring-1 ring-inset ring-brand-600/20">+{{ $role->permissions->count() - 12 }} more</span>
+                                    <span class="inline-flex items-center rounded-md bg-brand-50 px-2 py-1 text-xs font-medium text-brand-700 ring-1 ring-inset ring-brand-600/20">+{{ $role->permissions->count() - 12 }} lainnya</span>
                                 @endif
                             </div>
                         </div>
@@ -50,7 +50,7 @@
 
             <section class="rounded-2xl bg-white shadow-sm ring-1 ring-gray-200/50 overflow-hidden mt-8">
                 <div class="px-6 py-5 border-b border-gray-100 bg-gray-50/50">
-                    <h3 class="text-base font-semibold leading-6 text-gray-900">Permission Matrix</h3>
+                    <h3 class="text-base font-semibold leading-6 text-gray-900">Matriks Hak Akses</h3>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200 text-sm">

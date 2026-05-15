@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between w-full">
         <div>
             <h2 class="text-2xl font-bold tracking-tight text-gray-900">{{ $document->document_name }}</h2>
-            <p class="hidden lg:block text-sm text-gray-500 mt-1">View detailed information about this document.</p>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Lihat informasi terperinci mengenai dokumen ini.</p>
         </div>
     </div>
 </x-slot>

@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between w-full">
         <div>
             <h2 class="text-2xl font-bold tracking-tight text-gray-900">Edit Role: {{ $role->name }}</h2>
-            <p class="hidden lg:block text-sm text-gray-500 mt-1">Configure permissions for this specific role.</p>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Konfigurasi hak akses (permissions) untuk peran spesifik ini.</p>
         </div>
     </div>
 </x-slot>

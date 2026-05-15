@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between w-full">
         <div>
             <h2 class="text-2xl font-bold tracking-tight text-gray-900">Edit Additional Certificate</h2>
-            <p class="hidden lg:block text-sm text-gray-500 mt-1">Update supplementary certificate details.</p>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Perbarui detail dokumen pendukung tambahan.</p>
         </div>
     </div>
 </x-slot>

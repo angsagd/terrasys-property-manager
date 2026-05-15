@@ -2,8 +2,8 @@
     <x-slot name="header">
     <div class="flex items-center justify-between w-full">
         <div>
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Property Distribution Map</h2>
-            <p class="hidden lg:block text-sm text-gray-500 mt-1">Visual distribution of your entire property portfolio.</p>
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Peta Distribusi Properti</h2>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Distribusi visual dari seluruh portofolio properti Anda.</p>
         </div>
     </div>
 </x-slot>

@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between w-full">
         <div>
             <h2 class="text-2xl font-bold tracking-tight text-gray-900">Edit Lease Contract</h2>
-            <p class="hidden lg:block text-sm text-gray-500 mt-1">Modify existing lease contract details.</p>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Ubah detail kontrak sewa yang sudah ada.</p>
         </div>
     </div>
 </x-slot>

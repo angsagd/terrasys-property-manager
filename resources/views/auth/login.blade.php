@@ -6,7 +6,7 @@
         @csrf
 
         <div>
-            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Alamat Email</label>
             <div class="mt-2 relative rounded-md shadow-sm">
                 <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                     <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M3 4a2 2 0 00-2 2v8a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2H3zm0 2h14v.511l-7 4.2-7-4.2V6zm14 8H3V8.889l6.486 3.891a1 1 0 001.028 0L17 8.89V14z"/></svg>
@@ -18,10 +18,10 @@
 
         <div>
             <div class="flex items-center justify-between">
-                <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Kata Sandi</label>
                 @if (Route::has('password.request'))
                     <div class="text-sm">
-                        <a href="{{ route('password.request') }}" class="font-semibold text-brand-600 hover:text-brand-500 transition-colors">Forgot password?</a>
+                        <a href="{{ route('password.request') }}" class="font-semibold text-brand-600 hover:text-brand-500 transition-colors">Lupa kata sandi?</a>
                     </div>
                 @endif
             </div>
@@ -36,7 +36,7 @@
 
         <div class="flex items-center">
             <input id="remember_me" name="remember" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-600 focus:ring-2 focus:ring-offset-2 transition-all">
-            <label for="remember_me" class="ml-3 block text-sm leading-6 text-gray-700">Remember me</label>
+            <label for="remember_me" class="ml-3 block text-sm leading-6 text-gray-700">Ingat saya</label>
         </div>
 
         <div>

@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between w-full">
         <div>
             <h2 class="text-2xl font-bold tracking-tight text-gray-900">Laporan Aset per Jenis Hak</h2>
-            <p class="hidden lg:block text-sm text-gray-500 mt-1">Analyze property distribution based on land rights type.</p>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Analisis distribusi properti berdasarkan jenis hak tanah.</p>
         </div>
     </div>
 </x-slot>

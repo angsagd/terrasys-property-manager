@@ -2,8 +2,8 @@
     <x-slot name="header">
         <div class="flex items-center justify-between w-full">
             <div>
-                <h2 class="text-2xl font-bold tracking-tight text-gray-900">User Management</h2>
-                <p class="hidden lg:block text-sm text-gray-500 mt-1">Manage system access, roles, and user accounts.</p>
+                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Manajemen Pengguna</h2>
+                <p class="hidden lg:block text-sm text-gray-500 mt-1">Kelola akses sistem, daftar peran, dan akun pengguna.</p>
             </div>
             @can('create_user')
                 <a href="{{ route('admin.users.create') }}" class="inline-flex items-center rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 transition-all">
@@ -31,18 +31,18 @@
                         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                             <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
                         </div>
-                        <input name="search" value="{{ request('search') }}" placeholder="Search name or email..." class="block w-full rounded-xl border-0 py-2.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-500 sm:text-sm sm:leading-6 transition-shadow">
+                        <input name="search" value="{{ request('search') }}" placeholder="Cari nama atau email..." class="block w-full rounded-xl border-0 py-2.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-500 sm:text-sm sm:leading-6 transition-shadow">
                     </div>
                     <select name="role" class="rounded-xl border-0 py-2.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-brand-500 sm:text-sm sm:leading-6 sm:w-48 transition-shadow">
-                        <option value="">All Roles</option>
+                        <option value="">Semua Peran</option>
                         @foreach ($roles as $role)
                             <option value="{{ $role->name }}" @selected(request('role') === $role->name)>{{ $role->name }}</option>
                         @endforeach
                     </select>
                     <select name="is_active" class="rounded-xl border-0 py-2.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-brand-500 sm:text-sm sm:leading-6 sm:w-40 transition-shadow">
-                        <option value="">All Statuses</option>
-                        <option value="1" @selected(request('is_active') === '1')>Active</option>
-                        <option value="0" @selected(request('is_active') === '0')>Inactive</option>
+                        <option value="">Semua Status</option>
+                        <option value="1" @selected(request('is_active') === '1')>Aktif</option>
+                        <option value="0" @selected(request('is_active') === '0')>Nonaktif</option>
                     </select>
                     <button class="inline-flex items-center justify-center rounded-xl bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 transition-colors sm:w-auto">
                         Filter
@@ -55,11 +55,11 @@
                     <table class="min-w-full divide-y divide-gray-200 text-sm">
                         <thead class="bg-gray-50/50">
                             <tr>
-                                <th scope="col" class="py-3.5 pl-4 pr-3 text-left font-semibold text-gray-900 sm:pl-6">User Info</th>
-                                <th scope="col" class="px-3 py-3.5 text-left font-semibold text-gray-900">Roles</th>
+                                <th scope="col" class="py-3.5 pl-4 pr-3 text-left font-semibold text-gray-900 sm:pl-6">Info Pengguna</th>
+                                <th scope="col" class="px-3 py-3.5 text-left font-semibold text-gray-900">Peran</th>
                                 <th scope="col" class="px-3 py-3.5 text-left font-semibold text-gray-900">Status</th>
-                                <th scope="col" class="px-3 py-3.5 text-left font-semibold text-gray-900">Last Login</th>
-                                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"><span class="sr-only">Actions</span></th>
+                                <th scope="col" class="px-3 py-3.5 text-left font-semibold text-gray-900">Terakhir Masuk</th>
+                                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"><span class="sr-only">Aksi</span></th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100 bg-white">
@@ -130,7 +130,7 @@
                                 <tr>
                                     <td colspan="5" class="py-12 text-center">
                                         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>
-                                        <h3 class="mt-2 text-sm font-semibold text-gray-900">No users found</h3>
+                                        <h3 class="mt-2 text-sm font-semibold text-gray-900">Pengguna tidak ditemukan</h3>
                                         <p class="mt-1 text-sm text-gray-500">There are currently no users matching your criteria.</p>
                                     </td>
                                 </tr>

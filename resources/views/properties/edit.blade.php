@@ -2,8 +2,8 @@
     <x-slot name="header">
     <div class="flex items-center justify-between w-full">
         <div>
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Edit Property</h2>
-            <p class="hidden lg:block text-sm text-gray-500 mt-1">Update information and details of the property.</p>
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Ubah Properti</h2>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Perbarui informasi dan detail dari properti ini.</p>
         </div>
     </div>
 </x-slot>

@@ -2,8 +2,8 @@
     <x-slot name="header">
         <div class="flex items-center justify-between w-full">
             <div>
-                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Lease Management</h2>
-                <p class="hidden lg:block text-sm text-gray-500 mt-1">Manage all your property lease contracts.</p>
+                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Manajemen Sewa</h2>
+                <p class="hidden lg:block text-sm text-gray-500 mt-1">Kelola semua data kontrak sewa (lease) properti Anda.</p>
             </div>
             @can('create_lease')
                 <a href="{{ route('lease-contracts.create') }}" class="inline-flex items-center rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 transition-all">
@@ -35,7 +35,7 @@
                             <option value="{{ $leaseStatus->id }}" @selected(request('lease_status_id') == $leaseStatus->id)>{{ $leaseStatus->name }}</option>
                         @endforeach
                     </select>
-                    <button class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white">Filter</button>
+                    <button class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white">Saring</button>
                 </div>
                 <div class="mt-3 grid gap-3 md:grid-cols-3">
                     <label class="text-xs font-medium uppercase text-gray-500">Mulai Dari
@@ -45,7 +45,7 @@
                         <input type="date" name="end_date" value="{{ request('end_date') }}" class="mt-1 w-full rounded-md border-gray-300 text-sm">
                     </label>
                     <div class="flex items-end">
-                        <a href="{{ route('lease-contracts.index') }}" class="rounded-md border border-gray-300 px-4 py-2 text-sm text-gray-700">Reset</a>
+                        <a href="{{ route('lease-contracts.index') }}" class="rounded-md border border-gray-300 px-4 py-2 text-sm text-gray-700">Atur Ulang</a>
                     </div>
                 </div>
             </form>
@@ -54,7 +54,7 @@
                 <table class="min-w-full divide-y divide-gray-200 text-sm">
                     <thead class="bg-gray-50 text-left text-xs font-medium uppercase text-gray-500">
                         <tr>
-                            <th class="px-4 py-3">Property</th>
+                            <th class="px-4 py-3">Properti</th>
                             <th class="px-4 py-3">Jenis Sewa</th>
                             <th class="px-4 py-3">Pihak Lawan</th>
                             <th class="px-4 py-3">Periode</th>

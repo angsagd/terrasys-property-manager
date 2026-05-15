@@ -2,8 +2,8 @@
     <x-slot name="header">
     <div class="flex items-center justify-between w-full">
         <div>
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Upload Document</h2>
-            <p class="hidden lg:block text-sm text-gray-500 mt-1">Upload a new document related to a property.</p>
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Unggah Dokumen</h2>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Unggah dokumen baru yang berkaitan dengan properti.</p>
         </div>
     </div>
 </x-slot>
@@ -99,7 +99,7 @@
 
                 <div class="flex justify-end gap-3">
                     <a href="{{ route('documents.index') }}" class="rounded-md border border-gray-300 px-4 py-2 text-sm">Batal</a>
-                    <button class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white">Upload</button>
+                    <button class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white">Unggah</button>
                 </div>
             </form>
         </div>

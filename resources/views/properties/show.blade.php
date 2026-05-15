@@ -1,4 +1,4 @@
-<x-app-layout>
+<!--x-app-layout>
     <x-slot name="header">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full gap-4">
             <div>
@@ -8,7 +8,7 @@
                 </div>
                 <p class="text-sm text-gray-500 mt-1 flex items-center gap-2">
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
-                    {{ $property->city?->name }}, {{ $property->province?->name }} · Code: {{ $property->property_code }}
+                    {{ $property->city?->name }}, {{ $property->province?->name }} · Kode: {{ $property->property_code }}
                 </p>
             </div>
             @can('update_property')
@@ -44,7 +44,7 @@
                     <div class="mt-1 flex items-baseline text-xl font-bold text-gray-900">{{ number_format($property->land_area ?? 0, 2) }} <span class="ml-1 text-sm font-medium text-gray-500">{{ $property->area_unit }}</span></div>
                 </div>
                 <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-200/50 hover:shadow-md transition-shadow">
-                    <div class="text-sm font-medium text-gray-500">Expired Date</div>
+                    <div class="text-sm font-medium text-gray-500">Tgl. Kedaluwarsa</div>
                     <div class="mt-1 flex items-baseline text-xl font-bold {{ $property->certificate?->expired_date?->isPast() ? 'text-rose-600' : 'text-gray-900' }}">{{ $property->certificate?->expired_date?->format('d M Y') ?? '-' }}</div>
                 </div>
             </div>
@@ -54,12 +54,12 @@
                 <div class="border-b border-gray-200 bg-gray-50/50 px-4 sm:px-6">
                     <nav class="-mb-px flex space-x-6 overflow-x-auto" aria-label="Tabs">
                         @foreach ([
-                            'overview' => 'Overview',
+                            'overview' => 'Ikhtisar',
                             'property' => 'Detail Data',
                             'certificate' => 'Sertifikat',
                             'additional' => 'Dokumen Tambahan',
-                            'lease' => 'Lease',
-                            'documents' => 'Files',
+                            'lease' => 'Kontrak Sewa',
+                            'documents' => 'Berkas',
                             'map' => 'Peta',
                             'audit' => 'Log Aktivitas',
                         ] as $key => $label)
@@ -77,9 +77,9 @@
                     <section x-show="tab === 'overview'" class="space-y-8" style="display: none;" x-transition.opacity>
                         <div class="grid gap-8 lg:grid-cols-3">
                             <div class="lg:col-span-2">
-                                <h3 class="text-base font-bold text-gray-900 tracking-tight mb-4">Informasi Property</h3>
+                                <h3 class="text-base font-bold text-gray-900 tracking-tight mb-4">Informasi Properti</h3>
                                 <dl class="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
-                                    <div class="sm:col-span-1"><dt class="text-sm font-medium text-gray-500">Jenis Property</dt><dd class="mt-1 text-sm text-gray-900">{{ $property->propertyType?->name }}</dd></div>
+                                    <div class="sm:col-span-1"><dt class="text-sm font-medium text-gray-500">Jenis Properti</dt><dd class="mt-1 text-sm text-gray-900">{{ $property->propertyType?->name }}</dd></div>
                                     <div class="sm:col-span-1"><dt class="text-sm font-medium text-gray-500">Lokasi</dt><dd class="mt-1 text-sm text-gray-900">{{ $property->city?->name }}, {{ $property->province?->name }}</dd></div>
                                     <div class="sm:col-span-1"><dt class="text-sm font-medium text-gray-500">Luas Tanah</dt><dd class="mt-1 text-sm text-gray-900">{{ number_format($property->land_area ?? 0, 2) }} {{ $property->area_unit }}</dd></div>
                                     <div class="sm:col-span-1"><dt class="text-sm font-medium text-gray-500">Luas Bangunan</dt><dd class="mt-1 text-sm text-gray-900">{{ number_format($property->building_area ?? 0, 2) }} {{ $property->area_unit }}</dd></div>
@@ -99,11 +99,11 @@
 
                     <!-- Property Data -->
                     <section x-show="tab === 'property'" class="space-y-6" style="display: none;" x-transition.opacity>
-                        <h3 class="text-base font-bold text-gray-900 tracking-tight">Detail Property</h3>
+                        <h3 class="text-base font-bold text-gray-900 tracking-tight">Detail Properti</h3>
                         <div class="overflow-hidden rounded-xl ring-1 ring-gray-200/50">
                             <dl class="divide-y divide-gray-100 bg-white">
                                 <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"><dt class="text-sm font-medium text-gray-500">Kode Internal</dt><dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $property->property_code }}</dd></div>
-                                <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 bg-gray-50/50"><dt class="text-sm font-medium text-gray-500">Nama Property</dt><dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $property->property_name }}</dd></div>
+                                <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 bg-gray-50/50"><dt class="text-sm font-medium text-gray-500">Nama Properti</dt><dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $property->property_name }}</dd></div>
                                 <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"><dt class="text-sm font-medium text-gray-500">Status Pemanfaatan</dt><dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $property->utilizationStatus?->name }}</dd></div>
                                 <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 bg-gray-50/50"><dt class="text-sm font-medium text-gray-500">Kondisi Fisik</dt><dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $property->physical_condition ?: '-' }}</dd></div>
                                 <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"><dt class="text-sm font-medium text-gray-500">Provinsi & Kota</dt><dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $property->province?->name }} / {{ $property->city?->name }}</dd></div>
@@ -140,7 +140,7 @@
                         </div>
                         <div class="overflow-hidden rounded-xl ring-1 ring-gray-200/50">
                             <table class="min-w-full divide-y divide-gray-200 text-sm">
-                                <thead class="bg-gray-50/50"><tr><th class="px-4 py-3 text-left font-medium text-gray-900">Nomor</th><th class="px-4 py-3 text-left font-medium text-gray-900">Jenis</th><th class="px-4 py-3 text-left font-medium text-gray-900">Pemegang</th><th class="px-4 py-3 text-left font-medium text-gray-900">Expired</th></tr></thead>
+                                <thead class="bg-gray-50/50"><tr><th class="px-4 py-3 text-left font-medium text-gray-900">Nomor</th><th class="px-4 py-3 text-left font-medium text-gray-900">Jenis</th><th class="px-4 py-3 text-left font-medium text-gray-900">Pemegang</th><th class="px-4 py-3 text-left font-medium text-gray-900">Kedaluwarsa</th></tr></thead>
                                 <tbody class="divide-y divide-gray-100 bg-white">
                                     @forelse ($property->additionalCertificates as $item)
                                         <tr class="hover:bg-gray-50/50"><td class="px-4 py-3 font-medium text-gray-900">{{ $item->document_number ?: '-' }}</td><td class="px-4 py-3 text-gray-500">{{ $item->landRightType?->name ?? $item->document_type }}</td><td class="px-4 py-3 text-gray-500">{{ $item->holder_name ?: '-' }}</td><td class="px-4 py-3 text-gray-500">{{ $item->expired_date?->format('d M Y') ?? '-' }}</td></tr>
@@ -157,7 +157,7 @@
                         <div class="flex items-center justify-between">
                             <h3 class="text-base font-bold text-gray-900 tracking-tight">Kontrak Sewa (Lease)</h3>
                             @can('create_lease')
-                                <a href="{{ route('lease-contracts.create', ['property_id' => $property->id]) }}" class="text-sm font-medium text-brand-600 hover:text-brand-500 transition-colors">+ Tambah Lease</a>
+                                <a href="{{ route('lease-contracts.create', ['property_id' => $property->id]) }}" class="text-sm font-medium text-brand-600 hover:text-brand-500 transition-colors">+ Tambah Kontrak Sewa</a>
                             @endcan
                         </div>
                         <div class="overflow-hidden rounded-xl ring-1 ring-gray-200/50">
@@ -186,7 +186,7 @@
                         <div class="flex items-center justify-between">
                             <h3 class="text-base font-bold text-gray-900 tracking-tight">Arsip Dokumen</h3>
                             @can('upload_document')
-                                <a href="{{ route('documents.create') }}" class="text-sm font-medium text-brand-600 hover:text-brand-500 transition-colors">+ Upload Baru</a>
+                                <a href="{{ route('documents.create') }}" class="text-sm font-medium text-brand-600 hover:text-brand-500 transition-colors">+ Unggah Baru</a>
                             @endcan
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -221,7 +221,7 @@
                         @else
                             <div class="py-12 text-center rounded-xl ring-1 ring-gray-200/50 bg-gray-50/50">
                                 <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
-                                <p class="mt-2 text-sm text-gray-500">Koordinat (Latitude/Longitude) property belum diisi.</p>
+                                <p class="mt-2 text-sm text-gray-500">Koordinat (Latitude/Longitude) properti belum diisi.</p>
                             </div>
                         @endif
                     </section>
@@ -231,7 +231,7 @@
                         <h3 class="text-base font-bold text-gray-900 tracking-tight">Log Aktivitas Data</h3>
                         <div class="overflow-hidden rounded-xl ring-1 ring-gray-200/50">
                             <table class="min-w-full divide-y divide-gray-200 text-sm">
-                                <thead class="bg-gray-50/50"><tr><th class="px-4 py-3 text-left font-medium text-gray-900">Waktu</th><th class="px-4 py-3 text-left font-medium text-gray-900">User</th><th class="px-4 py-3 text-left font-medium text-gray-900">Modul</th><th class="px-4 py-3 text-left font-medium text-gray-900">Aksi</th></tr></thead>
+                                <thead class="bg-gray-50/50"><tr><th class="px-4 py-3 text-left font-medium text-gray-900">Waktu</th><th class="px-4 py-3 text-left font-medium text-gray-900">Pengguna</th><th class="px-4 py-3 text-left font-medium text-gray-900">Modul</th><th class="px-4 py-3 text-left font-medium text-gray-900">Aksi</th></tr></thead>
                                 <tbody class="divide-y divide-gray-100 bg-white">
                                     @forelse ($auditLogs as $log)
                                         <tr class="hover:bg-gray-50/50">

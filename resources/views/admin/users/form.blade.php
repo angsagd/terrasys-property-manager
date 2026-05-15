@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between w-full">
         <div>
             <h2 class="text-2xl font-bold tracking-tight text-gray-900">{{ $user ? 'Edit User' : 'Tambah User' }}</h2>
-            <p class="hidden lg:block text-sm text-gray-500 mt-1">Create or update system user details.</p>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Buat atau perbarui detail akun pengguna.</p>
         </div>
     </div>
 </x-slot>

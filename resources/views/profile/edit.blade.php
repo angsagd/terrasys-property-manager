@@ -3,7 +3,7 @@
         <div class="flex items-center justify-between w-full">
             <div>
                 <h2 class="text-2xl font-bold tracking-tight text-gray-900">{{ __('Profile') }}</h2>
-                <p class="hidden lg:block text-sm text-gray-500 mt-1">Manage your account settings and preferences.</p>
+                <p class="hidden lg:block text-sm text-gray-500 mt-1">Kelola pengaturan akun dan preferensi profil Anda.</p>
             </div>
         </div>
     </x-slot>

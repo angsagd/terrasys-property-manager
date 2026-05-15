@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between w-full">
         <div>
             <h2 class="text-2xl font-bold tracking-tight text-gray-900">{{ $item ? 'Edit' : 'Tambah' }} {{ $definition['title'] }}</h2>
-            <p class="hidden lg:block text-sm text-gray-500 mt-1">Create or update master data entries.</p>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Buat atau perbarui entri master data.</p>
         </div>
     </div>
 </x-slot>
