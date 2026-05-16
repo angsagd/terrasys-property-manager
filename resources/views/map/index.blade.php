@@ -1,8 +1,15 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="text-xl font-semibold text-gray-800">Property Distribution Map</h2></x-slot>
+    <x-slot name="header">
+    <div class="flex items-center justify-between w-full">
+        <div>
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Peta Distribusi Properti</h2>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Distribusi visual dari seluruh portofolio properti Anda.</p>
+        </div>
+    </div>
+</x-slot>
     <div class="py-8"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
-            <div id="map" class="h-[560px] rounded-md border border-gray-200"></div>
+            <div id="map" class="h-[560px] rounded-md border border-gray-200 relative z-0"></div>
         </div>
     </div></div>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">

@@ -1,7 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold text-gray-800">Upload Document</h2>
-    </x-slot>
+    <div class="flex items-center justify-between w-full">
+        <div>
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Unggah Dokumen</h2>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Unggah dokumen baru yang berkaitan dengan properti.</p>
+        </div>
+    </div>
+</x-slot>
 
     <div class="py-8">
         <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -94,7 +99,7 @@
 
                 <div class="flex justify-end gap-3">
                     <a href="{{ route('documents.index') }}" class="rounded-md border border-gray-300 px-4 py-2 text-sm">Batal</a>
-                    <button class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white">Upload</button>
+                    <button class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white">Unggah</button>
                 </div>
             </form>
         </div>

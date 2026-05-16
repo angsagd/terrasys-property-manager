@@ -1,10 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center justify-between">
-            <h2 class="text-xl font-semibold text-gray-800">Detail Lease Contract</h2>
+    <div class="flex items-center justify-between w-full">
+        <div>
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Detail Lease Contract</h2>
+            <p class="hidden lg:block text-sm text-gray-500 mt-1">Lihat detail lengkap dari kontrak sewa.</p>
+        </div>
             <div class="flex items-center gap-3">
                 @can('update_lease')
-                    <a href="{{ route('lease-contracts.edit', $leaseContract) }}" class="rounded-md border border-gray-300 px-4 py-2 text-sm text-gray-700">Edit</a>
+                    <a href="{{ route('lease-contracts.edit', $leaseContract) }}" class="rounded-md border border-gray-300 px-4 py-2 text-sm text-gray-700">Ubah</a>
                 @endcan
                 @can('delete_lease')
                     <form method="POST" action="{{ route('lease-contracts.destroy', $leaseContract) }}" onsubmit="return confirm('Hapus kontrak sewa ini?')">
@@ -26,7 +29,7 @@
             <section class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
                 <div class="grid gap-4 md:grid-cols-3">
                     <div>
-                        <div class="text-xs font-medium uppercase text-gray-500">Property</div>
+                        <div class="text-xs font-medium uppercase text-gray-500">Properti</div>
                         <a href="{{ route('properties.show', $leaseContract->property) }}" class="mt-1 block text-sm font-medium text-blue-700">{{ $leaseContract->property?->property_name }}</a>
                         <div class="text-xs text-gray-500">{{ $leaseContract->property?->property_code }} · {{ $leaseContract->property?->city?->name }}</div>
                     </div>
@@ -87,7 +90,7 @@
                                 <div class="font-medium text-gray-900">{{ $document->document_name }}</div>
                                 <div class="text-xs text-gray-500">{{ $document->category?->name }} · {{ $document->document_number ?: '-' }}</div>
                             </div>
-                            <a href="{{ route('documents.download', $document) }}" class="text-blue-700">Download</a>
+                            <a href="{{ route('documents.download', $document) }}" class="text-blue-700">Unduh</a>
                         </div>
                     @empty
                         <p class="text-gray-500">Belum ada dokumen lease.</p>

@@ -1,9 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center justify-between">
-            <h2 class="text-xl font-semibold text-gray-800">Lease Management</h2>
+        <div class="flex items-center justify-between w-full">
+            <div>
+                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Manajemen Sewa</h2>
+                <p class="hidden lg:block text-sm text-gray-500 mt-1">Kelola semua data kontrak sewa (lease) properti Anda.</p>
+            </div>
             @can('create_lease')
-                <a href="{{ route('lease-contracts.create') }}" class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white">Tambah</a>
+                <a href="{{ route('lease-contracts.create') }}" class="inline-flex items-center rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 transition-all">
+                    <svg class="-ml-0.5 mr-1.5 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" /></svg>
+                    New Lease
+                </a>
             @endcan
         </div>
     </x-slot>
@@ -29,7 +35,7 @@
                             <option value="{{ $leaseStatus->id }}" @selected(request('lease_status_id') == $leaseStatus->id)>{{ $leaseStatus->name }}</option>
                         @endforeach
                     </select>
-                    <button class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white">Filter</button>
+                    <button class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white">Saring</button>
                 </div>
                 <div class="mt-3 grid gap-3 md:grid-cols-3">
                     <label class="text-xs font-medium uppercase text-gray-500">Mulai Dari
@@ -39,7 +45,7 @@
                         <input type="date" name="end_date" value="{{ request('end_date') }}" class="mt-1 w-full rounded-md border-gray-300 text-sm">
                     </label>
                     <div class="flex items-end">
-                        <a href="{{ route('lease-contracts.index') }}" class="rounded-md border border-gray-300 px-4 py-2 text-sm text-gray-700">Reset</a>
+                        <a href="{{ route('lease-contracts.index') }}" class="rounded-md border border-gray-300 px-4 py-2 text-sm text-gray-700">Atur Ulang</a>
                     </div>
                 </div>
             </form>
@@ -48,7 +54,7 @@
                 <table class="min-w-full divide-y divide-gray-200 text-sm">
                     <thead class="bg-gray-50 text-left text-xs font-medium uppercase text-gray-500">
                         <tr>
-                            <th class="px-4 py-3">Property</th>
+                            <th class="px-4 py-3">Properti</th>
                             <th class="px-4 py-3">Jenis Sewa</th>
                             <th class="px-4 py-3">Pihak Lawan</th>
                             <th class="px-4 py-3">Periode</th>
